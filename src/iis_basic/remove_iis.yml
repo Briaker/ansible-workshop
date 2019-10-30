@@ -1,0 +1,18 @@
+---
+- name: Remove IIS web service
+  hosts: all
+  tasks:
+    - name: Stop IIS service
+      win_service:
+        name: W3Svc
+        state: stopped
+
+    - name: Remove website index.html
+      win_file:
+        path: C:\Inetpub\wwwroot\index.html
+        state: absent
+
+    - name: Remove IIS
+      win_feature:
+        name: Web-Server
+        state: absent

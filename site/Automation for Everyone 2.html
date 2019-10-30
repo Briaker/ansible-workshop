@@ -1,0 +1,1098 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0047)https://docs.ansibleworkshop.com/exercise2.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="AsciiDoc 8.6.8">
+<title>Automation for Everyone</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="book">
+<div id="header">
+<h1>Automation for Everyone</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_table_of_contents">Table of Contents</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="https://docs.ansibleworkshop.com/index.html">Agenda</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://docs.ansibleworkshop.com/exercise1.html">Exercise 1 - Configuring Ansible Tower</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://docs.ansibleworkshop.com/exercise2.html">Exercise 2 - Ad-hoc commands in Tower</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://docs.ansibleworkshop.com/exercise3.html">Exercise 3 - Writing Your First playbook</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://docs.ansibleworkshop.com/exercise4.html">Exercise 4 - Creating and Running a Job Template</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://docs.ansibleworkshop.com/exercise5.html">Exercise 5 - Using Variables, Loops, and Handlers</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://docs.ansibleworkshop.com/exercise6.html">Exercise 6 - Roles: Making your playbooks reusable</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://docs.ansibleworkshop.com/exercise7.html">Exercise 7 - Using Ansible for Windows Patching</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://docs.ansibleworkshop.com/wrapup.html">Wrap UP</a>
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<h1 id="_exercise_2_ad_hoc_commands_in_tower">Exercise 2 - Ad-hoc commands in Tower</h1>
+<div class="sect1">
+<h2 id="_section_1_ad_hoc_commands">Section 1: Ad-hoc commands</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>For our first exercise, we are going to run some ad-hoc commands to help you get
+a feel for how Ansible works.  Ansible Ad-Hoc commands enable you to perform tasks
+on remote nodes without having to write a playbook.  They are very useful when you
+simply need to do one or two things quickly and often, to many remote nodes.</p></div>
+<div class="sect2">
+<h3 id="_step_1">Step 1:</h3>
+<div class="paragraph"><p>To start, we will need to go to our Inventory.  So click <strong>Inventories</strong> on the left panel, and then click the name of our Inventory <strong>Ansible Workshop Inventory</strong>.
+Now that you are on the Inventory Details page, we will need to go select our Host.  So click <strong>HOSTS</strong>.</p></div>
+<div class="paragraph"><p>Next to each host is a checkbox.  Check the box next to each host you want to run an Ad-Hoc Command on.  You will then see the <strong>RUN COMMANDS</strong> button become enabled.  Click it now.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="./Automation for Everyone 2_files/2-adhoc-run-command.png" alt="images/2-adhoc-run-command.png" width="1000">
+</div>
+<div class="title">Figure 1. Run Command</div>
+</div>
+<div class="paragraph"><p>This will pop up the <strong>Execute Command</strong> window.  From here is where we can run a single task against our hosts.</p></div>
+<div class="paragraph"><p>Let’s start with something really basic - pinging a host.  The <code>win_ping</code> module makes sure our windows hosts are responsive.
+This is not a traditional <em>ping</em>, but actually verifying both connectivity and authentication to the host.</p></div>
+<div class="paragraph"><p>Fill out this form as follows</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">MODULE</p></td>
+<td align="left" valign="top"><p class="table">win_ping</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">ARGUMENTS</p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">LIMIT</p></td>
+<td align="left" valign="top"><p class="table">(This will be pre-filled out for you with the hosts you selected)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">MACHINE CREDENTIAL</p></td>
+<td align="left" valign="top"><p class="table">Student Account</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./Automation for Everyone 2_files/2-adhoc-run-win_ping.png" alt="images/2-adhoc-run-win_ping.png" width="1000">
+</div>
+<div class="title">Figure 2. Run Win_Ping</div>
+</div>
+<div class="paragraph"><p>Once you click <strong>LAUNCH</strong> you will be redirected to the Job log.  Every job and action in Ansible Tower is recorded and stored.
+These logs can be auto-rotated and can also be exported automatically to another logging system such as Splunk or ELK.</p></div>
+<div class="paragraph"><p>The first part of the log shows you the details of the job.  This includes information such as who launched the job, against what hosts, and when.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="./Automation for Everyone 2_files/2-adhoc-run-win_ping-success.png" alt="images/2-adhoc-run-win_ping-success.png" width="400">
+</div>
+<div class="title">Figure 3. Win_Ping Log Details</div>
+</div>
+<div class="paragraph"><p>The 2nd part of the job log shows you the actual output from the command.  If your connection was successful, you should see a result such as this.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="./Automation for Everyone 2_files/2-adhoc-run-win_ping-output.png" alt="images/2-adhoc-run-win_ping-output.png" width="1000">
+</div>
+<div class="title">Figure 4. Win_Ping Log Details</div>
+</div>
+<div class="paragraph"><p>The results returned will be different depending on which module is used, as they all handle and deal with different data sets depending on the task.
+No matter which module is used, you will always see a color coded STATUS of either SUCCESS, FAILURE, CHANGED, or SKIPPING.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_step_2">Step 2:</h3>
+<div class="paragraph"><p>Now let’s see how we can run a PowerShell command and view the output using the <code>win_shell</code> module.</p></div>
+<div class="paragraph"><p>Let’s fill out the form again, but this time use the <code>win_shell</code> module to execute the <code>Get-Service</code> Powershell command.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">MODULE</p></td>
+<td align="left" valign="top"><p class="table">win_shell</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">ARGUMENTS</p></td>
+<td align="left" valign="top"><p class="table">Get-Service</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">MACHINE CREDENTIAL</p></td>
+<td align="left" valign="top"><p class="table">Student Account</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Launch the job and view the results.  You will see that it returns a direct output of what the Powershell command returned.
+This data can be stored to a variable and directly parsed inside your Ansible playbook later on.</p></div>
+<div class="paragraph"><p>And run it one more time with the <code>Get-Process</code> Powershell command.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">MODULE</p></td>
+<td align="left" valign="top"><p class="table">win_shell</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">ARGUMENTS</p></td>
+<td align="left" valign="top"><p class="table">Get-Process</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">MACHINE CREDENTIAL</p></td>
+<td align="left" valign="top"><p class="table">Student Account</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_3">Step 3:</h3>
+<div class="paragraph"><p>We will now take a look at your Windows nodes configuration.  The <code>setup</code> module queries the remote host for various data and returns that data as Ansible Facts.
+This data is useful to determine things such as OS Versions, Hardware Configuration, and other various data points.
+This can then be used in your playbook for all sorts of reasons such as determining whether a task should even run, or determining what the name of a package should be based upon the OS Version.</p></div>
+<div class="paragraph"><p>The <code>setup</code> module will run automatically at the beginning of every playbook unless told not to.  That way this data is always available to your playbook.</p></div>
+<div class="paragraph"><p>Lets go ahead and run the <code>setup</code> module to look at the output.  Fill out the <strong>EXECUTE COMMAND</strong> form again with this info.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">MODULE</p></td>
+<td align="left" valign="top"><p class="table">setup</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">ARGUMENTS</p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">MACHINE CREDENTIAL</p></td>
+<td align="left" valign="top"><p class="table">Student Account</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>You will then see results like this</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="./Automation for Everyone 2_files/2-adhoc-run-setup-output.png" alt="images/2-adhoc-run-setup-output.png" width="1000">
+</div>
+<div class="title">Figure 5. Setup Log Details</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_4">Step 4:</h3>
+<div class="paragraph"><p>Now, let’s install IIS using the <code>win_feature</code> module.  Our arguments parameter is going to get a little more complex now.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">MODULE</p></td>
+<td align="left" valign="top"><p class="table">win_feature</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">ARGUMENTS</p></td>
+<td align="left" valign="top"><p class="table">name=Web-Server state=present</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">MACHINE CREDENTIAL</p></td>
+<td align="left" valign="top"><p class="table">Student Account</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>You will notice that the log text is now orange.  This is to denote that a change was made on the system versus the green that shows that no changes were made earlier.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="./Automation for Everyone 2_files/2-adhoc-run-win_feature-output.png" alt="images/2-adhoc-run-win_feature-output.png" width="1000">
+</div>
+<div class="title">Figure 6. Win_Feature Log Details</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_5">Step 5:</h3>
+<div class="paragraph"><p>OK, IIS is installed now so let’s be certain it is started using the <code>service</code> module.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">MODULE</p></td>
+<td align="left" valign="top"><p class="table">win_service</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">ARGUMENTS</p></td>
+<td align="left" valign="top"><p class="table">name=W3Svc state=started</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">MACHINE CREDENTIAL</p></td>
+<td align="left" valign="top"><p class="table">Student Account</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_6">Step 6:</h3>
+<div class="paragraph"><p>Finally, let’s clean up after ourselves.  First, stop the IIS service.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">MODULE</p></td>
+<td align="left" valign="top"><p class="table">win_service</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">ARGUMENTS</p></td>
+<td align="left" valign="top"><p class="table">name=W3Svc state=stopped</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">MACHINE CREDENTIAL</p></td>
+<td align="left" valign="top"><p class="table">Student Account</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_7">Step 7:</h3>
+<div class="paragraph"><p>Next, remove the IIS feature.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">MODULE</p></td>
+<td align="left" valign="top"><p class="table">win_feature</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">ARGUMENTS</p></td>
+<td align="left" valign="top"><p class="table">name=Web-Server state=absent</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">MACHINE CREDENTIAL</p></td>
+<td align="left" valign="top"><p class="table">Student Account</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>And now reboot the host.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">MODULE</p></td>
+<td align="left" valign="top"><p class="table">win_reboot</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">ARGUMENTS</p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">MACHINE CREDENTIAL</p></td>
+<td align="left" valign="top"><p class="table">Student Account</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="admonitionblock">
+<table><tbody><tr>
+<td class="icon">
+<img src="./Automation for Everyone 2_files/note.png" alt="Note">
+</td>
+<td class="content">The win_reboot module will cause the machine to reboot, and then will wait for it to come completely back up before finishing.
+This way, if you need to reboot the host in the middle of your playbook, the rest of the playbook will not fail because the host is inaccessible.</td>
+</tr></tbody></table>
+</div>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="footer">
+<div id="footer-text">
+Last updated 2019-09-25 03:40:27 UTC
+</div>
+<div id="footer-badges">
+<a href="http://validator.w3.org/check?uri=referer">
+  <img style="border:0;width:88px;height:31px" src="./Automation for Everyone 2_files/valid-xhtml11-blue" alt="Valid XHTML 1.1" height="31" width="88">
+</a>
+<a href="http://jigsaw.w3.org/css-validator/">
+  <img style="border:0;width:88px;height:31px" src="./Automation for Everyone 2_files/vcss-blue" alt="Valid CSS!">
+</a>
+</div>
+</div>
+
+
+</body></html>

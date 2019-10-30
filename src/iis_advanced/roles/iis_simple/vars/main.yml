@@ -1,0 +1,2 @@
+# vars file for iis_simple
+iis_test_message: "Hello World! Tabs < Spaces"
